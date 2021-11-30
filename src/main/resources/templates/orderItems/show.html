@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Заявка</title>
+</head>
+<body>
+<p th:text="${orderItem.getId()}">VALUE</p>
+<!--customer-->
+<!--place-->
+<p th:text="${orderItem.getCargoWeight()}">VALUE</p>
+<p th:text="${orderItem.getCreationDate()}">VALUE</p>
+<p th:text="${orderItem.getStatus()}">VALUE</p>
+<p th:text="${orderItem.getNote()}">VALUE</p>
+<p th:text="${orderItem.getCustomer().getName()}">VALUE</p>
+
+</body>
+</html>

@@ -1,35 +1,35 @@
 package com.example.cargoTransportation.models;
 
 import javax.persistence.*;
-import java.time.ZonedDateTime;
 
 @Entity
-@Table(name = "order_item")
-public class Order {
+public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private Integer idCustomer;
-    private Integer idPlace;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customerId", referencedColumnName = "id")
+    private Customer customer;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "placeId", referencedColumnName = "id")
+    private Place place;
+
     private Integer cargoWeight;
     private String creationDate;
     private Boolean status;
     private String note;
 
-    public Order(){
+    public OrderItem(){
 
     }
 
-    public Order(Integer idCustomer, Integer idPlace, Integer cargoWeight, String note, String creationDate) {
-        this.idCustomer = idCustomer;
-        this.idPlace = idPlace;
-        this.cargoWeight = cargoWeight;
-        this.note = note;
-        this.creationDate = creationDate;
-        this.status = false;
+    public OrderItem(Integer idCustomer, Integer idPlace, Integer cargoWeight, String note, String creationDate) {
+
     }
+
 
     public Integer getId() {
         return id;
@@ -39,20 +39,20 @@ public class Order {
         this.id = id;
     }
 
-    public Integer getIdCustomer() {
-        return idCustomer;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setIdCustomer(Integer idCustomer) {
-        this.idCustomer = idCustomer;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public Integer getIdPlace() {
-        return idPlace;
+    public Place getPlace() {
+        return place;
     }
 
-    public void setIdPlace(Integer idPlace) {
-        this.idPlace = idPlace;
+    public void setPlace(Place place) {
+        this.place = place;
     }
 
     public Integer getCargoWeight() {
@@ -61,14 +61,6 @@ public class Order {
 
     public void setCargoWeight(Integer cargoWeight) {
         this.cargoWeight = cargoWeight;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
     }
 
     public String getCreationDate() {
@@ -85,5 +77,13 @@ public class Order {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }
