@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание заявки</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/orderItems}" th:object="${orderItem}">
+    <label for="customer">Введите идентификатор заказчика:</label>
+    <input type="text" th:field="*{customer.id}" id="customer"/>
+    <br/>
+    <label for="place">Введите идентификатор места загрузки:</label>
+    <input type="text" th:field="*{place.id}" id="place"/>
+    <br/>
+    <label for="cargoWeight">Введите вес груза:</label>
+    <input type="text" th:field="*{cargoWeight}" id="cargoWeight"/>
+    <br/>
+    <label for="creationDate">Введите дату создания:</label>
+    <input type="text" th:field="*{creationDate}" id="creationDate"/>
+    <br/>
+    <label for="status">Введите статус:</label>
+    <input type="text" th:field="*{status}" id="status"/>
+    <br/>
+    <label for="note">Введите примечание:</label>
+    <input type="text" th:field="*{note}" id="note"/>
+    <br/>
+    <input type="submit" value="Создать">
+</form>
+</body>
+</html>
