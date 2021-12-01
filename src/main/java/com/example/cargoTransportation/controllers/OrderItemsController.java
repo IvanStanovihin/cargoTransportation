@@ -27,51 +27,54 @@ public class OrderItemsController {
     private CustomerRepository customerRepository;
 
     @GetMapping("/test")
-    public String test(){
+    public String test() {
         return "orderItems/test";
     }
 
     @GetMapping()
-    public String index(Model model){
+    public String index(Model model) {
         model.addAttribute("orderItems", orderItemRepository.findAll());
         return "orderItems/index";
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model){
+    public String show(@PathVariable("id") int id, Model model) {
         OrderItem orderItem = orderItemRepository.findById(id).get();
         model.addAttribute("orderItem", orderItem);
         return "orderItems/show";
     }
 
     @GetMapping("/new")
-    public String newOrderItem(Model model){
+    public String newOrderItem(Model model) {
         OrderItem orderItem = new OrderItem();
         model.addAttribute("orderItem", orderItem);
         return "orderItems/new";
     }
 
     @PostMapping()
-    public String createOrderItem(@ModelAttribute OrderItem orderItem, Model model){
+    public String createOrderItem(@ModelAttribute OrderItem orderItem, Model model) {
         Customer customer = null;
         Place place = null;
         Integer customerId = orderItem.getCustomer().getId();
         Optional<Customer> customerOp = customerRepository.findById(customerId);
-        if (customerOp.isPresent()){
+        if (customerOp.isPresent()) {
             customer = customerOp.get();
         }
 
         Integer placeId = orderItem.getPlace().getId();
         Optional<Place> placeOp = placeRepository.findById(placeId);
-        if (placeOp.isPresent()){
+        if (placeOp.isPresent()) {
             place = placeOp.get();
         }
 
-        if (customer == null || place == null){
+        if (customer == null || place == null) {
             return "redirect:/orderItems/new";
+        } else {
+            orderItem.setCustomer(customer);
+            orderItem.setPlace(place);
+            orderItemRepository.save(orderItem);
+            return "redirect:/orderItems";
         }
-        orderItemRepository.save(orderItem);
-        return "redirect:/orderItems";
     }
 
     @GetMapping("/{id}/edit")
@@ -82,7 +85,7 @@ public class OrderItemsController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("orderItem") OrderItem orderItem, @PathVariable("id") int id){
+    public String update(@ModelAttribute("orderItem") OrderItem orderItem, @PathVariable("id") int id) {
         OrderItem orderToUpdate = orderItemRepository.findById(orderItem.getId()).get();
         orderToUpdate.setCargoWeight(orderItem.getCargoWeight());
         orderToUpdate.setCreationDate(orderItem.getCreationDate());
@@ -92,6 +95,11 @@ public class OrderItemsController {
         return "redirect:/orderItems";
     }
 
-
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        OrderItem orderToDelete = orderItemRepository.findById(id).get();
+        orderItemRepository.delete(orderToDelete);
+        return "redirect:/orderItems";
+    }
 
 }
