@@ -17,6 +17,10 @@ public class Place {
     private Float latitude;
     private Float longitude;
 
+    public Place() {
+
+    }
+
     public Integer getId() {
         return id;
     }
@@ -48,4 +52,5 @@ public class Place {
     public void setLongitude(Float longitude) {
         this.longitude = longitude;
     }
+
 }

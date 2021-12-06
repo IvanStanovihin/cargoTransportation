@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание точки погрузки</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/places}" th:object="${place}">
+    <label for="place">Введите адрес точки погрузки:</label>
+    <input type="text" th:field="*{address}" id="place"/>
+    <br/>
+
+    <input type="submit" value="Создать">
+</form>
+</body>
+</html>

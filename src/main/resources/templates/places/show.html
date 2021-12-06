@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Точка погрузки</title>
+</head>
+<body>
+<p th:text="${place.getId()}">VALUE</p>
+<p th:text="${place.getAddress()}">VALUE</p>
+
+
+<form th:method="GET" th:action="@{/places/{id}/edit(id=${place.getId()})}">
+    <input type="submit" value="Изменить"/>
+</form>
+<br/>
+
+<form th:method="DELETE" th:action="@{/places/{id}(id=${place.getId()})}">
+    <input type="submit" value="Удалить"/>
+</form>
+</body>
+</html>

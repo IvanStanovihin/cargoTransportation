@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение точки погрузки</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/places/{id}(id=${place.getId()})}" th:object="${place}">
+    <label for="place">Введите адрес точки погрузки:</label>
+    <input type="text" th:field="*{address}" id="place"/>
+    <input type="submit" value="Обновить">
+</form>
+
+</body>
+</html>

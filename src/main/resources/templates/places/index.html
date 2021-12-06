@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Точки погрузки</title>
+</head>
+<body>
+
+<div th:each="place : ${places}">
+    <a th:href="@{/places/{id}(id=${place.getId()})}" th:text="${place.getId()}">place</a>
+</div>
+
+<br/>
+<hr/>
+
+<form th:method="GET" th:action="@{/places/new}">
+    <input type="submit" value="Создать точку погрузки"/>
+</form>
+
+
+</body>
+</html>
