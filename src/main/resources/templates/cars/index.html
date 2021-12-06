@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Автомобили</title>
+</head>
+<body>
+
+<div th:each="car : ${cars}">
+    <a th:href="@{/cars/{id}(id=${car.getId()})}" th:text="${car.getId()}">car</a>
+</div>
+<br/>
+
+<hr/>
+<form th:method="GET" th:action="@{/cars/new}">
+    <input type="submit" value="Создать автомобиль"/>
+</form>
+
+</body>
+</html>

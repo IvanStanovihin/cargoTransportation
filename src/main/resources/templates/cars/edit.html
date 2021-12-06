@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение автомобиля</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/cars/{id}(id=${car.getId()})}" th:object="${car}">
+    <label for="model">Введите модель автомобиля:</label>
+    <input type="text" th:field="*{model}" id="model"/>
+    <br/>
+    <label for="capacity">Введите грузоподъёмность:</label>
+    <input type="text" th:field="*{capacity}" id="capacity"/>
+    <br/>
+
+    <input type="submit" value="Обновить">
+
+</form>
+
+</body>
+</html>

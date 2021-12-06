@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание заказчика</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/customers}" th:object="${customer}">
+    <label for="name">Введите имя:</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <label for="phone">Введите номер телефона:</label>
+    <input type="text" th:field="*{phoneNumber}" id="phone"/>
+    <br/>
+
+    <input type="submit" value="Создать">
+</form>
+</body>
+</html>

@@ -24,8 +24,6 @@ public class PlacesController {
         return "places/index";
     }
 
-
-
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         Place place = placeRepository.findById(id).get();
@@ -34,14 +32,14 @@ public class PlacesController {
     }
 
     @GetMapping("/new")
-    public String newOrderItem(Model model) {
+    public String newPlace(Model model) {
         Place place = new Place();
         model.addAttribute("place", place);
         return "places/new";
     }
 
     @PostMapping()
-    public String createOrderItem(@ModelAttribute Place place, Model model) {
+    public String createPlace(@ModelAttribute Place place, Model model) {
         placeRepository.save(place);
         return "redirect:/places";
     }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказчик</title>
+</head>
+<body>
+<p th:text="${customer.getId()}">VALUE</p>
+<p th:text="${customer.getPhoneNumber()}">VALUE</p>
+<p th:text="${customer.getName()}">VALUE</p>
+
+
+<form th:method="GET" th:action="@{/customers/{id}/edit(id=${customer.getId()})}">
+    <input type="submit" value="Изменить"/>
+</form>
+<br/>
+
+<form th:method="DELETE" th:action="@{/customers/{id}(id=${customer.getId()})}">
+    <input type="submit" value="Удалить"/>
+</form>
+</body>
+</html>

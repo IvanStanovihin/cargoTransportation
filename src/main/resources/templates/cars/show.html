@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Автомобили</title>
+</head>
+<body>
+<p th:text="${car.getId()}">VALUE</p>
+<p th:text="${car.getModel()}">VALUE</p>
+<p th:text="${car.getCapacity()}">VALUE</p>
+
+
+<form th:method="GET" th:action="@{/cars/{id}/edit(id=${car.getId()})}">
+    <input type="submit" value="Изменить"/>
+</form>
+<br/>
+
+<form th:method="DELETE" th:action="@{/cars/{id}(id=${car.getId()})}">
+    <input type="submit" value="Удалить"/>
+</form>
+</body>
+</html>
