@@ -1,5 +1,6 @@
 package com.example.cargoTransportation.controllers;
 
+import com.example.cargoTransportation.logic.OrderCreator;
 import com.example.cargoTransportation.models.Customer;
 import com.example.cargoTransportation.models.OrderItem;
 import com.example.cargoTransportation.models.Place;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -25,6 +27,9 @@ public class OrderItemsController {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private OrderCreator orderCreator;
 
     @GetMapping("/test")
     public String test() {
@@ -49,31 +54,18 @@ public class OrderItemsController {
     @GetMapping("/new")
     public String newOrderItem(Model model) {
         OrderItem orderItem = new OrderItem();
+        model.addAttribute("places", placeRepository.findAll());
+        model.addAttribute("customers", customerRepository.findAll());
         model.addAttribute("orderItem", orderItem);
         return "orderItems/new";
     }
 
     @PostMapping()
     public String createOrderItem(@ModelAttribute OrderItem orderItem, Model model) {
-        Customer customer = null;
-        Place place = null;
-        Integer customerId = orderItem.getCustomer().getId();
-        Optional<Customer> customerOp = customerRepository.findById(customerId);
-        if (customerOp.isPresent()) {
-            customer = customerOp.get();
-        }
-
-        Integer placeId = orderItem.getPlace().getId();
-        Optional<Place> placeOp = placeRepository.findById(placeId);
-        if (placeOp.isPresent()) {
-            place = placeOp.get();
-        }
-
-        if (customer == null || place == null) {
+        OrderItem createdOrder = orderCreator.createOrder(orderItem);
+        if (createdOrder == null) {
             return "redirect:/orderItems/new";
         } else {
-            orderItem.setCustomer(customer);
-            orderItem.setPlace(place);
             orderItemRepository.save(orderItem);
             return "redirect:/orderItems";
         }

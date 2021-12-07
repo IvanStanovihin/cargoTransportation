@@ -14,8 +14,10 @@
 <p th:text="${orderItem.getNote()}">VALUE</p>
 <p th:text="${orderItem.getCustomer().getName()}">VALUE</p>
 
-<a th:href="@{/orderItems/{id}/edit(id=${orderItem.getId()})}">Изменить</a>
-
+<form th:method="DELETE" th:action="@{/orderItems/{id}/edit(id=${orderItem.getId()})}">
+    <input type="submit" value="Изменить"/>
+</form>
+<br/>
 <form th:method="DELETE" th:action="@{/orderItems/{id}(id=${orderItem.getId()})}">
     <input type="submit" value="Удалить"/>
 </form>
