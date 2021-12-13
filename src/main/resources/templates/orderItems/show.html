@@ -5,21 +5,24 @@
     <title>Заявка</title>
 </head>
 <body>
-<p th:text="${orderItem.getId()}">VALUE</p>
-<!--customer-->
-<!--place-->
-<p th:text="${orderItem.getCargoWeight()}">VALUE</p>
-<p th:text="${orderItem.getCreationDate()}">VALUE</p>
-<p th:text="${orderItem.getStatus()}">VALUE</p>
-<p th:text="${orderItem.getNote()}">VALUE</p>
-<p th:text="${orderItem.getCustomer().getName()}">VALUE</p>
+
+<p th:text="${'Вес груза: ' + orderItem.getCargoWeight()}">VALUE</p>
+<p th:text="${'Дата создания заявки: ' + orderItem.getCreationDate()}">VALUE</p>
+<p th:text="${'Статус заявки: ' + orderItem.getStatus()}">VALUE</p>
+<p th:text="${'Примечание: ' + orderItem.getNote()}">VALUE</p>
+<p th:text="${'Заказчик: ' + orderItem.getCustomer().getName()}">VALUE</p>
+<p th:text="${'Место загрузки: ' + orderItem.getPlace().getAddress()}">VALUE</p>
+<p th:text="${'Автомобиль: ' + orderItem.getCar().getModel()}">VALUE</p>
 
 <form th:method="DELETE" th:action="@{/orderItems/{id}/edit(id=${orderItem.getId()})}">
     <input type="submit" value="Изменить"/>
 </form>
 <br/>
+
 <form th:method="DELETE" th:action="@{/orderItems/{id}(id=${orderItem.getId()})}">
     <input type="submit" value="Удалить"/>
 </form>
+<br/>
+
 </body>
 </html>

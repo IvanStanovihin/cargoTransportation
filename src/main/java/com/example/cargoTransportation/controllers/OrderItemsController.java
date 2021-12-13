@@ -1,9 +1,11 @@
 package com.example.cargoTransportation.controllers;
 
 import com.example.cargoTransportation.logic.OrderCreator;
+import com.example.cargoTransportation.models.Car;
 import com.example.cargoTransportation.models.Customer;
 import com.example.cargoTransportation.models.OrderItem;
 import com.example.cargoTransportation.models.Place;
+import com.example.cargoTransportation.repositories.CarRepository;
 import com.example.cargoTransportation.repositories.CustomerRepository;
 import com.example.cargoTransportation.repositories.OrderItemRepository;
 import com.example.cargoTransportation.repositories.PlaceRepository;
@@ -27,6 +29,9 @@ public class OrderItemsController {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private CarRepository carRepository;
 
     @Autowired
     private OrderCreator orderCreator;
@@ -54,6 +59,7 @@ public class OrderItemsController {
     @GetMapping("/new")
     public String newOrderItem(Model model) {
         OrderItem orderItem = new OrderItem();
+        model.addAttribute("cars", carRepository.findAll());
         model.addAttribute("places", placeRepository.findAll());
         model.addAttribute("customers", customerRepository.findAll());
         model.addAttribute("orderItem", orderItem);

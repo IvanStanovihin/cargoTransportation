@@ -10,7 +10,7 @@ public class DriverSchedule {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "driverId", referencedColumnName = "id")
     private Driver driver;
 

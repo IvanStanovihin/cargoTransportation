@@ -14,4 +14,9 @@ public class MainController {
         return "mainForm/mainView";
     }
 
+    @GetMapping("testIndex")
+    public String testIndex(Model model){
+        return "misha/index";
+    }
+
 }

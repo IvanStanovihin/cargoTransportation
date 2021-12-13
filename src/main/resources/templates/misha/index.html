@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заголовок</title>
+    <link th:href="@{/front/styles/style.css}" rel="stylesheet" />
+<!--    <script src="scripts/script.js"></script>-->
+    <script type="text/javascript" th:src="@{/front/scripts/script.js}"></script>
+
+</head>
+
+<body>
+    <div class="layout-wrapper">
+        <header>
+            <div class="head-layout">
+                <div class="container head">
+                    <img src="/front/img/White icon.png" width="65px" height="65px">
+                    <div class="head">Оптимизация грузоперевозок</div>
+                    <div class="userclass">Оператор</div>
+                </div>
+            </div>
+        </header>
+        <div class="navbar">
+            <a href="" class="navbutton">Заявки</a>
+            <a href="" class="navbutton">Водители</a>
+            <a href="" class="navbutton">Автопарк</a>
+            <a href="" class="navbutton">Заказчики</a>
+            <a href="" class="navbutton">Маршруты</a>
+        </div>
+        <div class="container content">
+            <div class="button-bar">
+                <input type="button" value="Добавить" class="funcbutton" onclick="addEditingRow()">
+                <input type="button" value="Сформировать маршруты" class="funcbutton">
+                <input type="button" value="Карта" class="funcbutton" onclick="toggleMapDisplay()">
+            </div>
+            <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d78079.00332074719!2d104.19711869327703!3d52.29841976812476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5da83ad353e2f665%3A0x31d6cd1456d8e94e!2sIrkutsk%2C%20Irkutsk%20Oblast!5e0!3m2!1sen!2sru!4v1639317687883!5m2!1sen!2sru" 
+            style="border:0;" allowfullscreen="" loading="lazy" class="map"></iframe>
+            <table>
+                <thead class="tablehead">
+                    <tr id="table-header">
+                        <th>Заказчик</th>
+                        <th>Адрес</th>
+                        <th>Масса</th>
+                        <th>Примечание</th>
+                    </tr>
+                </thead>
+                <tbody id="appsTable">
+                    <tr ondblclick="enterEditingMode(this)">
+                        <td>1ИРНИТУ</td>
+                        <td>г. Иркутск ул. Лермонтова 83</td>
+                        <td>400кг</td>
+                        <td>Замечания</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

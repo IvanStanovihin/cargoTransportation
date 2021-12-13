@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение водителя</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/drivers/{id}(id=${driver.getId()})}" th:object="${driver}">
+    <label for="firstName">Введите имя:</label>
+    <input type="text" th:field="*{firstName}" id="firstName"/>
+    <br/>
+
+    <label for="lastName">Введите фамилию:</label>
+    <input type="text" th:field="*{lastName}" id="lastName"/>
+    <br/>
+
+    <label for="patronymic">Введите отчество:</label>
+    <input type="text" th:field="*{patronymic}" id="patronymic"/>
+    <br/>
+
+    <label for="phone">Введите номер телефона:</label>
+    <input type="text" th:field="*{phoneNumber}" id="phone"/>
+    <br/>
+
+    <input type="submit" value="Обновить">
+
+</form>
+
+</body>
+</html>

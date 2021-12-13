@@ -6,34 +6,33 @@
 </head>
 <body>
 <br/>
+
 <form th:method="GET" th:action="@{/orderItems/}">
     <input type="submit" value="Заявки"/>
 </form>
-
 <br/>
+
 <form th:method="GET" th:action="@{/cars/}">
     <input type="submit" value="Автомобили"/>
 </form>
-
 <br/>
+
 <form th:method="GET" th:action="@{/customers/}">
     <input type="submit" value="Заказчики"/>
 </form>
-
 <br/>
+
 <form th:method="GET" th:action="@{/places/}">
     <input type="submit" value="Точки погрузки"/>
 </form>
-
 <br/>
-<select>
-    <option value="apple">Apple</option>
-    <option value="banana">Banana</option>
-    <option value="orange">Orange</option>
-    <option value="pear">Pear</option>
-</select>
 
+<form th:method="GET" th:action="@{/drivers/}">
+    <input type="submit" value="Водители"/>
+</form>
 
-
+<form th:method="GET" th:action="@{/drivers/}">
+    <input type="submit" value="Сгенерировать маршрутный лист"/>
+</form>
 </body>
 </html>

@@ -23,6 +23,14 @@
     </select>
     <br/>
 
+    <label>Выберите автомобиль:</label>
+    <select th:field="*{car.id}">
+        <div th:each="car : ${cars}">
+            <option th:value="${car.getId()}" th:text="${car.getModel() + ', ' + car.getCapacity()}">carInfo</option>
+        </div>
+    </select>
+    <br/>
+
     <label for="cargoWeight">Введите вес груза:</label>
     <input type="text" th:field="*{cargoWeight}" id="cargoWeight"/>
     <br/>

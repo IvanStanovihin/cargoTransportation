@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказчик</title>
+</head>
+<body>
+<p th:text="${driver.getId()}">VALUE</p>
+<p th:text="${driver.getFirstName()}">VALUE</p>
+<p th:text="${driver.getLastName()}">VALUE</p>
+<p th:text="${driver.getPatronymic()}">VALUE</p>
+<p th:text="${driver.getPhoneNumber()}">VALUE</p>
+
+
+<form th:method="GET" th:action="@{/drivers/{id}/edit(id=${driver.getId()})}">
+    <input type="submit" value="Изменить"/>
+</form>
+<br/>
+
+<form th:method="DELETE" th:action="@{/drivers/{id}(id=${driver.getId()})}">
+    <input type="submit" value="Удалить"/>
+</form>
+</body>
+</html>

@@ -14,6 +14,8 @@ public class Car {
     private String model;
     private Long capacity;
 
+    public Car(){}
+
     public Integer getId() {
         return id;
     }
