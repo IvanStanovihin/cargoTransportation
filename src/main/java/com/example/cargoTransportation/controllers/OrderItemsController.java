@@ -59,7 +59,6 @@ public class OrderItemsController {
     @GetMapping("/new")
     public String newOrderItem(Model model) {
         OrderItem orderItem = new OrderItem();
-        model.addAttribute("cars", carRepository.findAll());
         model.addAttribute("places", placeRepository.findAll());
         model.addAttribute("customers", customerRepository.findAll());
         model.addAttribute("orderItem", orderItem);
