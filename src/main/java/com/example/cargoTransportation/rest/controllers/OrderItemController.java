@@ -18,7 +18,7 @@ public class OrderItemController {
     private OrderItemRepository orderItemRepository;
 
     @GetMapping
-    public Iterable<OrderItem> getOrderItems(){
+    public Iterable<OrderItem> getAllOrderItems(){
         return orderItemRepository.findAll();
     }
 }
