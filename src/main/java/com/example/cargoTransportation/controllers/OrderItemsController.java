@@ -1,10 +1,7 @@
 package com.example.cargoTransportation.controllers;
 
-import com.example.cargoTransportation.logic.OrderCreator;
-import com.example.cargoTransportation.models.Car;
-import com.example.cargoTransportation.models.Customer;
+import com.example.cargoTransportation.logic.service.OrderService;
 import com.example.cargoTransportation.models.OrderItem;
-import com.example.cargoTransportation.models.Place;
 import com.example.cargoTransportation.repositories.CarRepository;
 import com.example.cargoTransportation.repositories.CustomerRepository;
 import com.example.cargoTransportation.repositories.OrderItemRepository;
@@ -13,9 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/orderItems")
@@ -34,7 +28,7 @@ public class OrderItemsController {
     private CarRepository carRepository;
 
     @Autowired
-    private OrderCreator orderCreator;
+    private OrderService orderService;
 
     @GetMapping("/test")
     public String test() {
@@ -67,7 +61,7 @@ public class OrderItemsController {
 
     @PostMapping()
     public String createOrderItem(@ModelAttribute OrderItem orderItem, Model model) {
-        OrderItem createdOrder = orderCreator.createOrder(orderItem);
+        OrderItem createdOrder = orderService.createOrder(orderItem);
         if (createdOrder == null) {
             return "redirect:/orderItems/new";
         } else {

@@ -1,5 +1,6 @@
 package com.example.cargoTransportation.controllers;
 
+import com.example.cargoTransportation.logic.service.PlaceService;
 import com.example.cargoTransportation.models.Customer;
 import com.example.cargoTransportation.models.OrderItem;
 import com.example.cargoTransportation.models.Place;
@@ -15,8 +16,16 @@ import java.util.Optional;
 @RequestMapping("/places")
 public class PlacesController {
 
-    @Autowired
+
     private PlaceRepository placeRepository;
+    private PlaceService placeService;
+
+    @Autowired
+    public PlacesController(PlaceRepository placeRepository, PlaceService placeService){
+        this.placeRepository = placeRepository;
+        this.placeService = placeService;
+    }
+
 
     @GetMapping()
     public String index(Model model) {
@@ -40,6 +49,7 @@ public class PlacesController {
 
     @PostMapping()
     public String createPlace(@ModelAttribute Place place, Model model) {
+        placeService.geocoding(place);
         placeRepository.save(place);
         return "redirect:/places";
     }
